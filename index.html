@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自動化軍團總部 — Automation Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f5f3;
+  --bg2: #ffffff;
+  --bg3: #efefed;
+  --line: rgba(0,0,0,0.08);
+  --line2: rgba(0,0,0,0.14);
+  --text: #111112;
+  --text2: #444450;
+  --text3: #888890;
+  --accent: #2a6e2a;
+  --accent-bg: rgba(42,110,42,0.08);
+  --blue: #1a5fa8;
+  --blue-bg: rgba(26,95,168,0.08);
+  --teal: #0e7a6a;
+  --teal-bg: rgba(14,122,106,0.08);
+  --purple: #5a3fa8;
+  --purple-bg: rgba(90,63,168,0.08);
+  --amber: #7a5200;
+  --amber-bg: rgba(122,82,0,0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,245,243,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line2);
+  padding: 0 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-badge {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #fff;
+  background: var(--accent);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+nav { display: flex; gap: 28px; }
+
+nav a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text3);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+nav a:hover { color: var(--accent); }
+
+.hero {
+  padding: 64px 40px 52px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line2);
+}
+
+.hero-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-label::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero p {
+  font-size: 15px;
+  color: var(--text2);
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 36px;
+  margin-top: 40px;
+  padding-top: 36px;
+  border-top: 1px solid var(--line2);
+  flex-wrap: wrap;
+}
+
+.stat-item .num {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.stat-item .num span { color: var(--accent); }
+
+.stat-item .label {
+  font-size: 11px;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+section {
+  padding: 52px 40px;
+  border-top: 1px solid var(--line2);
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.section-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 0.15em;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  background: var(--bg2);
+}
+
+table { width: 100%; border-collapse: collapse; min-width: 780px; }
+
+thead tr { border-bottom: 1px solid var(--line2); }
+
+thead th {
+  padding: 13px 18px;
+  text-align: left;
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  background: var(--bg3);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.15s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--bg3); }
+
+tbody td { padding: 15px 18px; font-size: 13px; vertical-align: top; }
+
+.task-main {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.task-sub { font-size: 11px; color: var(--text3); }
+
+.platform-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.tag-local { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(90,63,168,0.18); }
+.tag-github { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(26,95,168,0.18); }
+
+.path-text {
+  font-size: 10px;
+  color: var(--text3);
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  margin-top: 3px;
+}
+
+.freq-text { font-size: 12px; color: var(--text2); line-height: 1.6; }
+.func-text { font-size: 12px; color: var(--text2); }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-family: 'Syne', sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.s-running { background: var(--teal-bg); color: var(--teal); border: 1px solid rgba(14,122,106,0.2); }
+.s-standby { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(26,95,168,0.2); }
+.s-cloud { background: var(--accent-bg); color: var(--accent); border: 1px solid rgba(42,110,42,0.2); }
+
+.dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.dot-pulse { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+
+.repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--blue);
+  text-decoration: none;
+  margin-top: 3px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.repo-link:hover { color: var(--accent); }
+.repo-link::after { content: ' ↗'; font-size: 10px; }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  padding: 22px;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 8px;
+}
+
+.card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.card-tag { font-size: 10px; color: var(--text3); font-family: 'Courier New', monospace; }
+
+.card-body { display: flex; flex-direction: column; gap: 9px; }
+
+.card-row { display: flex; gap: 10px; font-size: 12px; }
+
+.card-row-label {
+  color: var(--text3);
+  min-width: 65px;
+  flex-shrink: 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding-top: 1px;
+}
+
+.card-row-value { color: var(--text2); line-height: 1.5; }
+
+.card-row-value.highlight {
+  color: var(--accent);
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.comms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.comm-card {
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  border-radius: 10px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.comm-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.comm-icon-send { background: var(--accent-bg); }
+.comm-icon-recv { background: var(--blue-bg); }
+
+.comm-label {
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.comm-email {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+footer {
+  padding: 28px 40px;
+  border-top: 1px solid var(--line2);
+  background: var(--bg2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-text { font-size: 11px; color: var(--text3); letter-spacing: 0.04em; }
+
+.footer-link {
+  font-size: 11px;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--accent); }
+
+@media (max-width: 600px) {
+  header, .hero, section, footer { padding-left: 18px; padding-right: 18px; }
+  .hero-stats { gap: 20px; }
+  nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="brand-badge">HUB</span>
+    <span class="brand-name">Automation Hub</span>
+  </div>
+  <nav>
+    <a href="#overview">總覽</a>
+    <a href="#comms">通訊</a>
+    <a href="#details">詳解</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-label">nrsabefmusic / My-Automation-Hub</div>
+  <h1>自動化軍團<br><span>總部儀表板</span></h1>
+  <p>統一管理所有自動化流程。本機 PC 任務與 GitHub 雲端排程，一覽無遺。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="num">7<span>.</span></div>
+      <div class="label">總腳本數</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">4<span>.</span></div>
+      <div class="label">本地 PC</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">3<span>.</span></div>
+      <div class="label">GitHub Actions</div>
+    </div>
+    <div class="stat-item">
+      <div class="num">V<span>11.2</span></div>
+      <div class="label">文件版本</div>
+    </div>
+  </div>
+</div>
+
+<section id="overview">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">軍團部署概況表</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>流程名稱</th>
+          <th>執行平台</th>
+          <th>觸發方式</th>
+          <th>執行頻率（台灣時間）</th>
+          <th>核心功能</th>
+          <th>狀態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="task-main">Daily Digest</div><div class="task-sub">AI 日報 [DailyScript]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div><div class="path-text">DailyScript\daily.py</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週一至六 08:50, 15:30, 19:00<br>週日 19:00</span></td>
+          <td><span class="func-text">彙整新聞並發送 Email</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Task Runner</div><div class="task-sub">多工執行器 [VerifyRunner]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div><div class="path-text">For daily_review\scripts\verify_runner.py</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週二、三 11:31<br>週一、四、五 18:25</span></td>
+          <td><span class="func-text">JSON 任務分析與 RSS 追蹤</span></td>
+          <td><span class="status-badge s-standby"><span class="dot"></span>待命中</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">AI Brain</div><div class="task-sub">Notion 中樞 [AIBrain]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div><div class="path-text">For notion_make\script\ai_brain.py</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週二、三 10:11<br>週一、四、五 20:38</span></td>
+          <td><span class="func-text">Notion 待辦事項 AI 歸檔</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Wiki Manager</div><div class="task-sub">知識庫 [WikiManager]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div><div class="path-text">KnowledgeBase\scripts\main.py</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週一、四、五 20:08</span></td>
+          <td><span class="func-text">本地文件摘要與 Wiki 化</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Cloud Scout</div><div class="task-sub">雲端情報官 [daily-gemini-bot]</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/daily-gemini-bot" target="_blank" class="repo-link">daily-gemini-bot</a><div class="path-text">main.py</div></td>
+          <td><span class="func-text">雲端排程</span></td>
+          <td><span class="freq-text">每日 07:55, 13:55, 19:55</span></td>
+          <td><span class="func-text">監控台積電與 0050 分析</span></td>
+          <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Event Intel</div><div class="task-sub">全球追蹤 [EventTracker]</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">main.py</div></td>
+          <td><span class="func-text">雲端排程</span></td>
+          <td><span class="freq-text">每三天執行一次（00:00）</span></td>
+          <td><span class="func-text">全球半導體與國際局勢監控</span></td>
+          <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Taiwan Pledge</div><div class="task-sub">產業監測 [TaiwanPledgeMonitor]</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">tracker_pledge.py</div></td>
+          <td><span class="func-text">雲端排程</span></td>
+          <td><span class="freq-text">週一、三、五 21:37</span></td>
+          <td><span class="func-text">台灣產業關鍵指標監測</span></td>
+          <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="comms">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">通訊節點說明</h2>
+  </div>
+  <div class="comms-grid">
+    <div class="comm-card">
+      <div class="comm-icon comm-icon-send">📤</div>
+      <div>
+        <div class="comm-label">主要發送端 [Music]</div>
+        <div class="comm-email">nrsabefmusic@gmail.com</div>
+      </div>
+    </div>
+    <div class="comm-card">
+      <div class="comm-icon comm-icon-recv">📥</div>
+      <div>
+        <div class="comm-label">主要接收報告端 [Shop]</div>
+        <div class="comm-email">nrsabefshop@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="details">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">軍團任務詳解</h2>
+  </div>
+  <div class="cards-grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Daily Digest</div><div class="card-tag">[DailyScript]</div></div>
+        <span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">每日節奏穩定的「全能播報員」</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
+        <div class="card-row"><span class="card-row-label">Mail 標題</span><span class="card-row-value">【戰地驗證日報：YYYY年MM月DD日（週x）】</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">彙整物理動員驗證（軍事）、數據驗證表（財經）及綜合分析</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Task Runner</div><div class="card-tag">[VerifyRunner]</div></div>
+        <span class="status-badge s-standby"><span class="dot"></span>待命中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">受控於 JSON 指令的「多工兵」</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
+        <div class="card-row"><span class="card-row-label">Mail 標題</span><span class="card-row-value">戰地驗證日報 - 全球宏觀經濟風險三指標監控</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">根據 tasks 資料夾的 JSON 定義檔執行任務，管理 5 個數據驗證懶人包。須經 Gemini 確認並形成 JSON 後才啟動</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">AI Brain</div><div class="card-tag">[AIBrain]</div></div>
+        <span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">數位大腦的「自動清理工」</span></div>
+        <div class="card-row"><span class="card-row-label">日誌</span><span class="card-row-value">notion_make_log 資料夾</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">自動掃描並歸檔 Notion 收件匣中的待辦事項</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Wiki Manager</div><div class="card-tag">[WikiManager]</div></div>
+        <span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">醫療與投資知識的「圖書館管理員」</span></div>
+        <div class="card-row"><span class="card-row-label">日誌</span><span class="card-row-value">wiki_log 資料夾</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">監測 medical、investment、ai_method 資料夾進行 Wiki 化</span></div>
+        <div class="card-row"><span class="card-row-label">特點</span><span class="card-row-value">增量處理邏輯，已處理的檔案自動跳過</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Cloud Scout</div><div class="card-tag">[daily-gemini-bot]</div></div>
+        <span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">高度彈性的「私人財經特助」</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Music]（自收）</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">讀取 interest.txt，針對台積電、0050、大盤走勢與科技新聞摘要</span></div>
+        <div class="card-row"><span class="card-row-label">特點</span><span class="card-row-value">修改追蹤主題只需更動 TXT 檔，腳本主體無需更動</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Event Intel</div><div class="card-tag">[EventTracker]</div></div>
+        <span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">國際局勢與半導體供應鏈的「偵察兵」</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
+        <div class="card-row"><span class="card-row-label">Mail 標題</span><span class="card-row-value">【維基更新報告】偵查任務完成</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">追蹤俄烏局勢、美委關係、高雄半導體 S 廊帶（P1-P5 廠）與馬斯克計畫</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Taiwan Pledge</div><div class="card-tag">[TaiwanPledgeMonitor]</div></div>
+        <span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">針對極端金融風險的「哨兵」</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
+        <div class="card-row"><span class="card-row-label">Mail 標題</span><span class="card-row-value">【台股質押風險監控】月度驗證報告</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">監測證券商不限用途借貸餘額（血壓計），因應元大證金限貸事件而建立</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">My-Automation-Hub · V11.2 · 私有儀表板</span>
+  <a href="https://github.com/nrsabefmusic/My-Automation-Hub" target="_blank" class="footer-link">GitHub Repo ↗</a>
+</footer>
+
+</body>
+</html>
