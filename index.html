@@ -437,7 +437,7 @@ footer {
   <p>統一管理所有自動化流程。本機 PC 任務與 GitHub 雲端排程，一覽無遺。</p>
   <div class="hero-stats">
     <div class="stat-item">
-      <div class="num">8<span>.</span></div>
+      <div class="num">9<span>.</span></div>
       <div class="label">總腳本數</div>
     </div>
     <div class="stat-item">
@@ -445,11 +445,11 @@ footer {
       <div class="label">本地 PC</div>
     </div>
     <div class="stat-item">
-      <div class="num">4<span>.</span></div>
+      <div class="num">5<span>.</span></div>
       <div class="label">GitHub Actions</div>
     </div>
     <div class="stat-item">
-      <div class="num">V<span>11.3</span></div>
+      <div class="num">V<span>11.4</span></div>
       <div class="label">文件版本</div>
     </div>
   </div>
@@ -526,7 +526,15 @@ footer {
           <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">02_improver.py</div></td>
           <td><span class="func-text">雲端排程</span></td>
           <td><span class="freq-text">週二、四、六 05:00</span></td>
-          <td><span class="func-text">針對 AI 報告進行增強與增量優化建議</span></td>
+          <td><span class="func-text">自動分析各腳本問題並提供增強建議</span></td>
+          <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Weekly Health Tracker</div><div class="task-sub">健康度追蹤器 [03 Tracker]</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">03_tracker.py</div></td>
+          <td><span class="func-text">雲端排程</span></td>
+          <td><span class="freq-text">週二、五 07:49</span></td>
+          <td><span class="func-text">讀取最新週報運用 Gemini 提供改善優化建議</span></td>
           <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
         </tr>
         <tr>
@@ -632,7 +640,7 @@ footer {
         <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">高度彈性的「私人財經特助」</span></div>
         <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Music]（自收）</span></div>
         <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">讀取 interest.txt，針對台積電、0050、大盤走勢與科技新聞摘要</span></div>
-        <div class="card-row"><span class="card-row-label">特點</span><span class="card-row-value">修改追蹤主題只需更動 TXT 檔，腳本主體無需更動</span></div>
+        <div class="card-row"><span class="card-row-label">特點</span><span class="card-row-value">修改追蹤主題只需更動 TXT 檔</span></div>
       </div>
     </div>
 
@@ -655,9 +663,24 @@ footer {
         <span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span>
       </div>
       <div class="card-body">
-        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">報告優化器</span></div>
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">AI 報告改善建議（報告優化器）</span></div>
         <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
-        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">針對 my-event-tracker 報告進行增強，提供增量處理與優化建議</span></div>
+        <div class="card-row"><span class="card-row-label">觸發</span><span class="card-row-value">週二、四、六 05:00 (台灣時間)</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">讀取最新週報信件，運用 Gemini 自動分析各腳本問題並提供增強與 Prompt 優化建議</span></div>
+        <div class="card-row"><span class="card-row-label">技術</span><span class="card-row-value">採用新版 google-genai SDK 核心</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Weekly Health Tracker</div><div class="card-tag">[03 Tracker]</div></div>
+        <span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">健康度追蹤器（報告優化器）</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
+        <div class="card-row"><span class="card-row-label">觸發</span><span class="card-row-value">週二、五 07:49 (台灣時間)</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">讀取最新週報信件（關鍵字：【週報】AI），運用 Gemini 自動分析各腳本問題並提供增強與 Prompt 優化建議</span></div>
         <div class="card-row"><span class="card-row-label">技術</span><span class="card-row-value">採用新版 google-genai SDK 核心</span></div>
       </div>
     </div>
@@ -671,7 +694,7 @@ footer {
         <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">針對極端金融風險的「哨兵」</span></div>
         <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
         <div class="card-row"><span class="card-row-label">Mail 標題</span><span class="card-row-value">【台股質押風險監控】月度驗證報告</span></div>
-        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">監測證券商不限用途借貸餘額（血壓計），因應元大證金限貸事件而建立</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">監測證券商不限用途借貸餘額，因應元大證金限貸事件而建立</span></div>
       </div>
     </div>
 
@@ -679,7 +702,7 @@ footer {
 </section>
 
 <footer>
-  <span class="footer-text">My-Automation-Hub · V11.3 · 私有儀表板</span>
+  <span class="footer-text">My-Automation-Hub · V11.4 · 私有儀表板</span>
   <a href="https://github.com/nrsabefmusic/My-Automation-Hub" target="_blank" class="footer-link">GitHub Repo ↗</a>
 </footer>
 
