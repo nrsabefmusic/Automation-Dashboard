@@ -698,7 +698,7 @@ footer {
       <div class="label">GitHub Actions</div>
     </div>
     <div class="stat-item">
-      <div class="num" style="color:var(--accent)">V14.0</div>
+      <div class="num" style="color:var(--accent)">V14.1</div>
       <div class="label">文件版本</div>
     </div>
   </div>
@@ -1004,7 +1004,7 @@ footer {
 </section>
 
 <footer>
-  <span class="footer-text">My-Automation-Hub · <span style="color:var(--accent);font-weight:700;">V14.0 · Gmail已整合</span> · 私有儀表板</span>
+  <span class="footer-text">My-Automation-Hub · <span style="color:var(--accent);font-weight:700;">V14.1 · Gmail已整合</span> · 私有儀表板</span>
   <a href="https://github.com/nrsabefmusic/My-Automation-Hub" target="_blank" class="footer-link">GitHub Repo ↗</a>
 </footer>
 
@@ -1215,6 +1215,13 @@ async function openMailDetail(id, subject, date, from) {
   }
 }
 
+function b64decode(data) {
+  const binary = atob(data.replace(/-/g, '+').replace(/_/g, '/'));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
 function extractBody(payload) {
   if (!payload) return { text: '', html: '' };
   // multipart
@@ -1222,9 +1229,9 @@ function extractBody(payload) {
     let text = '', html = '';
     for (const part of payload.parts) {
       if (part.mimeType === 'text/html' && part.body?.data) {
-        html = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+        html = b64decode(part.body.data);
       } else if (part.mimeType === 'text/plain' && part.body?.data) {
-        text = atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+        text = b64decode(part.body.data);
       } else if (part.parts) {
         const nested = extractBody(part);
         if (nested.html) html = nested.html;
@@ -1235,7 +1242,7 @@ function extractBody(payload) {
   }
   // single part
   if (payload.body?.data) {
-    const decoded = atob(payload.body.data.replace(/-/g, '+').replace(/_/g, '/'));
+    const decoded = b64decode(payload.body.data);
     if (payload.mimeType === 'text/html') return { html: decoded, text: '' };
     return { text: decoded, html: '' };
   }
