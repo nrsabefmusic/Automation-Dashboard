@@ -686,19 +686,19 @@ footer {
   <p>統一管理所有自動化流程。本機 PC 任務與 GitHub 雲端排程，一覽無遺。</p>
   <div class="hero-stats">
     <div class="stat-item">
-      <div class="num">11<span>.</span></div>
+      <div class="num">18<span>.</span></div>
       <div class="label">總腳本數</div>
     </div>
     <div class="stat-item">
-      <div class="num">4<span>.</span></div>
+      <div class="num">7<span>.</span></div>
       <div class="label">本地 PC</div>
     </div>
     <div class="stat-item">
-      <div class="num">7<span>.</span></div>
+      <div class="num">11<span>.</span></div>
       <div class="label">GitHub Actions</div>
     </div>
     <div class="stat-item">
-      <div class="num" style="color:var(--accent)">V14.1</div>
+      <div class="num" style="color:var(--accent)">V15.0</div>
       <div class="label">文件版本</div>
     </div>
   </div>
@@ -723,11 +723,12 @@ footer {
         </tr>
       </thead>
       <tbody>
+        <!-- ── 本地 PC ── -->
         <tr>
           <td><div class="task-main">Daily Digest</div><div class="task-sub">AI 日報 [DailyScript]</div></td>
           <td><div class="platform-tag tag-local">💻 本地 PC</div><div class="path-text">DailyScript\daily.py</div></td>
           <td><span class="func-text">定時任務</span></td>
-          <td><span class="freq-text">週一至六 08:50, 15:30, 19:00<br>週日 19:00</span></td>
+          <td><span class="freq-text">週一至六 08:50（早）<br>週一至六 15:28（午）<br>週日至五 19:38（晚）</span></td>
           <td><span class="func-text">彙整新聞並發送 Email</span></td>
           <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
           <td><button class="mail-btn no-gmail" onclick="openMailModal('Daily Digest', '戰地驗證日報：')">📬 查看信件</button></td>
@@ -760,6 +761,34 @@ footer {
           <td><button class="mail-btn no-gmail" onclick="openMailModal('Wiki Manager', '維基更新報告')">📬 查看信件</button></td>
         </tr>
         <tr>
+          <td><div class="task-main">Monitor 報告書計</div><div class="task-sub">[Monitor_報告書計]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週一至五 17:46</span></td>
+          <td><span class="func-text">偵測每個腳本預期結果與實際結果的差異</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Analyzer Weekly</div><div class="task-sub">週報統計 [01_analyzer_weekly]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週一至五 19:09</span></td>
+          <td><span class="func-text">統計 Monitor 的報告結果</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Daily Verification Task</div><div class="task-sub">[Daily_Verification_Task]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週一至六 09:59</span></td>
+          <td><span class="func-text">（功能待補）</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+          <td>—</td>
+        </tr>
+        <!-- ── GitHub Actions ── -->
+        <tr>
           <td><div class="task-main">Daily News Digest</div><div class="task-sub">新聞追蹤器 [01 News]</div></td>
           <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">01_news.py</div></td>
           <td><span class="func-text">雲端排程</span></td>
@@ -788,7 +817,7 @@ footer {
         </tr>
         <tr>
           <td><div class="task-main">Event Intel</div><div class="task-sub">全球追蹤 [EventTracker]</div></td>
-          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">main.py</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/03_Event-Intelligence-Tracker" target="_blank" class="repo-link">03_Event-Intelligence-Tracker</a><div class="path-text">main.py</div></td>
           <td><span class="func-text">雲端排程</span></td>
           <td><span class="freq-text">每三天一次 00:00</span></td>
           <td><span class="func-text">全球半導體與國際局勢監控</span></td>
@@ -797,16 +826,16 @@ footer {
         </tr>
         <tr>
           <td><div class="task-main">AI 報告改善建議</div><div class="task-sub">報告優化器 [02 Improver]</div></td>
-          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">02_improver.py</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/02_check-circle" target="_blank" class="repo-link">02_check-circle</a><div class="path-text">02_improver.py</div></td>
           <td><span class="func-text">雲端排程</span></td>
           <td><span class="freq-text">週二、四、六 05:00</span></td>
-          <td><span class="func-text">自動 analysis 各腳本問題並提供增強建議</span></td>
+          <td><span class="func-text">自動分析各腳本問題並提供增強建議</span></td>
           <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
           <td><button class="mail-btn no-gmail" onclick="openMailModal('AI 報告改善建議', '改善建議')">📬 查看信件</button></td>
         </tr>
         <tr>
           <td><div class="task-main">Weekly Health Tracker</div><div class="task-sub">健康度追蹤器 [03 Tracker]</div></td>
-          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">03_tracker.py</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/02_check-circle" target="_blank" class="repo-link">02_check-circle</a><div class="path-text">03_tracker.py</div></td>
           <td><span class="func-text">雲端排程</span></td>
           <td><span class="freq-text">週二、五 07:49</span></td>
           <td><span class="func-text">讀取最新週報運用 Gemini 提供改善優化建議</span></td>
@@ -815,12 +844,30 @@ footer {
         </tr>
         <tr>
           <td><div class="task-main">Taiwan Pledge</div><div class="task-sub">產業監測 [TaiwanPledgeMonitor]</div></td>
-          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/my-event-tracker" target="_blank" class="repo-link">my-event-tracker</a><div class="path-text">tracker_pledge.py</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/05_Taiwan-Pledge-Risk" target="_blank" class="repo-link">05_Taiwan-Pledge-Risk</a><div class="path-text">tracker_pledge.py</div></td>
           <td><span class="func-text">雲端排程</span></td>
           <td><span class="freq-text">週一、三、五 21:37</span></td>
           <td><span class="func-text">台灣產業關鍵指標監測</span></td>
           <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
           <td><button class="mail-btn no-gmail" onclick="openMailModal('Taiwan Pledge', '台股質押風險監控')">📬 查看信件</button></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Taiwan Market Verify</div><div class="task-sub">台股警示 [04 Verify]</div></td>
+          <td><div class="platform-tag tag-github">⚡ GitHub Actions</div><a href="https://github.com/nrsabefmusic/04_verify_taiwan_market" target="_blank" class="repo-link">04_verify_taiwan_market</a></td>
+          <td><span class="func-text">雲端排程</span></td>
+          <td><span class="freq-text">週一至五 07:00</span></td>
+          <td><span class="func-text">台股市場警示驗證報告</span></td>
+          <td><span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span></td>
+          <td><button class="mail-btn no-gmail" onclick="openMailModal('Taiwan Market Verify', '台股市場警示')">📬 查看信件</button></td>
+        </tr>
+        <tr>
+          <td><div class="task-main">Daily Verification Task</div><div class="task-sub">[Daily_Verification_Task]</div></td>
+          <td><div class="platform-tag tag-local">💻 本地 PC</div></td>
+          <td><span class="func-text">定時任務</span></td>
+          <td><span class="freq-text">週一至六 09:59</span></td>
+          <td><span class="func-text">（功能待補）</span></td>
+          <td><span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span></td>
+          <td>—</td>
         </tr>
       </tbody>
     </table>
@@ -997,14 +1044,61 @@ footer {
         <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
         <div class="card-row"><span class="card-row-label">Mail 標題</span><span class="card-row-value">【台股質押風險監控】月度驗證報告</span></div>
         <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">監測證券商不限用途借貸餘額，因應元大證金限貸事件而建立</span></div>
+        <div class="card-row"><span class="card-row-label">Repo</span><span class="card-row-value"><a href="https://github.com/nrsabefmusic/05_Taiwan-Pledge-Risk" target="_blank" class="repo-link">05_Taiwan-Pledge-Risk</a></span></div>
         <div class="card-row"><span class="card-row-label">信件</span><span class="card-row-value"><button class="mail-btn no-gmail" onclick="openMailModal('Taiwan Pledge', '台股質押風險監控')">📬 查看信件</button></span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Taiwan Market Verify</div><div class="card-tag">[04_verify_taiwan_market]</div></div>
+        <span class="status-badge s-cloud"><span class="dot dot-pulse"></span>雲端運行</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">台股市場的「警示驗證官」</span></div>
+        <div class="card-row"><span class="card-row-label">路徑</span><span class="card-row-value highlight">[Music] ➔ [Shop]</span></div>
+        <div class="card-row"><span class="card-row-label">觸發</span><span class="card-row-value">週一至五 07:00（台灣時間）</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">台股市場警示驗證報告</span></div>
+        <div class="card-row"><span class="card-row-label">Repo</span><span class="card-row-value"><a href="https://github.com/nrsabefmusic/04_verify_taiwan_market" target="_blank" class="repo-link">04_verify_taiwan_market</a></span></div>
+        <div class="card-row"><span class="card-row-label">信件</span><span class="card-row-value"><button class="mail-btn no-gmail" onclick="openMailModal('Taiwan Market Verify', '台股市場警示')">📬 查看信件</button></span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Analyzer Weekly</div><div class="card-tag">[01_analyzer_weekly]</div></div>
+        <span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">Monitor 報告的「數據統計員」</span></div>
+        <div class="card-row"><span class="card-row-label">觸發</span><span class="card-row-value">週一至五 19:09</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">統計 Monitor 的報告結果</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Monitor 報告書計</div><div class="card-tag">[Monitor_報告書計]</div></div>
+        <span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">職責</span><span class="card-row-value">腳本品質的「差異偵測哨兵」</span></div>
+        <div class="card-row"><span class="card-row-label">觸發</span><span class="card-row-value">週一至五 17:46</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">偵測每個腳本預期結果與實際結果的差異，即時發現異常</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-name">Daily Verification Task</div><div class="card-tag">[Daily_Verification_Task]</div></div>
+        <span class="status-badge s-running"><span class="dot dot-pulse"></span>運行中</span>
+      </div>
+      <div class="card-body">
+        <div class="card-row"><span class="card-row-label">觸發</span><span class="card-row-value">週一至六 09:59</span></div>
+        <div class="card-row"><span class="card-row-label">核心內容</span><span class="card-row-value">（功能待補）</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-text">My-Automation-Hub · <span style="color:var(--accent);font-weight:700;">V14.1 · Gmail已整合</span> · 私有儀表板</span>
+  <span class="footer-text">My-Automation-Hub · <span style="color:var(--accent);font-weight:700;">V15.0 · Gmail已整合</span> · 私有儀表板</span>
   <a href="https://github.com/nrsabefmusic/My-Automation-Hub" target="_blank" class="footer-link">GitHub Repo ↗</a>
 </footer>
 
